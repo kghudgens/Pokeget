@@ -18,6 +18,7 @@ public class PokemonServiceTests {
     public void testGetPokemonPlainJSON(){
         String obj = pkService.getPokemonPlainJSON();
         System.out.println(obj);
+        // should assert false because the string is now the json string object
         assertFalse(obj.isEmpty());
     }
 
