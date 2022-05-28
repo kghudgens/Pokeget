@@ -1,5 +1,10 @@
 package com.pokemon.pokemon;
 
+import org.springframework.data.annotation.Id;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /*
@@ -8,14 +13,22 @@ import java.util.ArrayList;
  * @author Kevin Hudgens
  * @version 1.0
  */
-public class Pokemon {
+
+
+public class Pokemon{
     // attributes defining the pokedmon
+    @Id
     private long id;
     private Integer pokedexEntry;
     private String name;
     private Integer height;
     private Integer weight;
     private int[] types = new int[2];
+
+    public Pokemon(){
+
+    }
+
 
     /*
     * The Pokemon constructor instantiates its class with all fields execept the id field because the
