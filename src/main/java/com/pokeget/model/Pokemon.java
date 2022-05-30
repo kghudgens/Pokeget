@@ -10,17 +10,19 @@ public class Pokemon {
     private String id;
 
     private String name;
-    private String[] type;
+    private String type1;
+    private String type2;
     private String ability;
     private int height;
     private int weight;
     private int pokedexID;
 
 
-    public Pokemon(String id, String name, String[] type, String ability, int height, int weight, int pokedexID) {
+    public Pokemon(String id, String name, String type1, String type2, String ability, int height, int weight, int pokedexID) {
         this.id = id;
         this.name = name;
-        this.type = type;
+        this.type1 = type1;
+        this.type2 = type2;
         this.ability = ability;
         this.height = height;
         this.weight = weight;
@@ -43,12 +45,20 @@ public class Pokemon {
         this.name = name;
     }
 
-    public String[] getType() {
-        return type;
+    public String getType1() {
+        return type1;
     }
 
-    public void setType(String[] type) {
-        this.type = type;
+    public void setType1(String type1) {
+        this.type1 = type1;
+    }
+
+    public String getType2() {
+        return type2;
+    }
+
+    public void setType2(String type2) {
+        this.type2 = type2;
     }
 
     public String getAbility() {
