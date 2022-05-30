@@ -6,10 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @SpringBootApplication
 @EnableMongoRepositories
@@ -24,10 +22,10 @@ public class PokegetApplication implements CommandLineRunner {
 	}
 
 	@Override
-	public void run(String... args){
+	public void run(String... args) throws Exception{
 
 		// Data for commandlinerunner to insert into the mongorepository
-	List<Pokemon> listOfPokemon = new ArrayList<>();
+//	List<Pokemon> listOfPokemon = new ArrayList<>();
 
 	Pokemon p1  = new Pokemon("1", "Blastoise", "Water", "", "Torrent",  63,
 			188, 9);
@@ -50,18 +48,15 @@ public class PokegetApplication implements CommandLineRunner {
 	Pokemon p10  = new Pokemon("10", "Tyranitar", "Dark", "Rock", "Sand Stream",  79,445
 				, 248);
 
-
-	listOfPokemon.add(p1);
-	listOfPokemon.add(p2);
-	listOfPokemon.add(p3);
-	listOfPokemon.add(p4);
-	listOfPokemon.add(p5);
-	listOfPokemon.add(p6);
-	listOfPokemon.add(p7);
-	listOfPokemon.add(p8);
-	listOfPokemon.add(p9);
-	listOfPokemon.add(p10);
-
-	pokemonRepository.insert(listOfPokemon);
+	pokemonRepository.save(p1);
+	pokemonRepository.save(p2);
+	pokemonRepository.save(p3);
+	pokemonRepository.save(p4);
+	pokemonRepository.save(p5);
+	pokemonRepository.save(p6);
+	pokemonRepository.save(p7);
+	pokemonRepository.save(p8);
+	pokemonRepository.save(p9);
+	pokemonRepository.save(p10);
 	}
 }
