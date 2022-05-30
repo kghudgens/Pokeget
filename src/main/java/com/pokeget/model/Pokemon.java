@@ -14,15 +14,17 @@ public class Pokemon {
     private String ability;
     private int height;
     private int weight;
+    private int pokedexID;
 
 
-    public Pokemon(String id, String name, String[] type, String ability, int height, int weight) {
+    public Pokemon(String id, String name, String[] type, String ability, int height, int weight, int pokedexID) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.ability = ability;
         this.height = height;
         this.weight = weight;
+        this.pokedexID = pokedexID;
     }
 
     public String getId() {
@@ -71,5 +73,14 @@ public class Pokemon {
 
     public void setWeight(int weight) {
         this.weight = weight;
+    }
+
+
+    public int getPokedexID() {
+        return pokedexID;
+    }
+
+    public void setPokedexID(int pokedexID) {
+        this.pokedexID = pokedexID;
     }
 }
