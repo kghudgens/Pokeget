@@ -61,4 +61,8 @@ public class PokemonService {
         // save method overwrites the resource
         return pokemonRepository.save(pokemon);
     }
+
+    public void delete(String id) {
+         pokemonRepository.deleteById(id);
+    }
 }

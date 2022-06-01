@@ -31,5 +31,11 @@ public class PokemonController {
     public Pokemon updatePokemon(@RequestBody Pokemon pokemon) {
         return pokemonService.updatePokemon(pokemon);
     }
+
+    @DeleteMapping("/{id}")
+    public void deletePokemon(@RequestParam("id") String id){
+        pokemonService.delete(id);
+    }
+
 }
 
