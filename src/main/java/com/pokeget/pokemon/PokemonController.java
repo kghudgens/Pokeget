@@ -26,5 +26,11 @@ public class PokemonController {
     public List<Pokemon> getPokemon(@PathVariable String name){
         return pokemonService.findPokemonByName(name);
     }
+
+    @PutMapping("/")
+    public Pokemon update(@RequestBody Pokemon pokemon) {
+        return pokemonService.update(pokemon);
+    }
+
 }
 

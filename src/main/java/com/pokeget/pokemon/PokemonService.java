@@ -42,11 +42,23 @@ public class PokemonService {
      * @return the object inserted into the repository
      */
     public Pokemon addPokemon(Pokemon pokemon){
+        // insert create new resource
         return pokemonRepository.insert(pokemon);
     }
 
-
+    // Docs located in interface
     public List<Pokemon> findPokemonByName(String name){
         return pokemonRepository.findPokemonByName(name);
+    }
+
+    /**
+     * Updates the pokemon object
+     *
+     * @param pokemon object to be updated
+     * @return updated object
+     */
+    public Pokemon update(Pokemon pokemon) {
+        // save method overwrites the resource
+        return pokemonRepository.save(pokemon);
     }
 }
