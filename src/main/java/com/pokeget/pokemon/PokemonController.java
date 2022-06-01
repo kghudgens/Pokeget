@@ -12,7 +12,7 @@ public class PokemonController {
     @Autowired
     PokemonService pokemonService;
 
-    @GetMapping("/")
+    @GetMapping
     public List<Pokemon> getAll(){
         return pokemonService.getAll();
     }
@@ -20,6 +20,11 @@ public class PokemonController {
     @PostMapping("/")
     public Pokemon addPokemon(@RequestBody Pokemon pokemon){
         return pokemonService.addPokemon(pokemon);
+    }
+
+    @GetMapping("/{name}")
+    public List<Pokemon> getPokemon(@PathVariable String name){
+        return pokemonService.findPokemonByName(name);
     }
 }
 

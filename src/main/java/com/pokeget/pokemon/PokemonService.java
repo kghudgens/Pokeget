@@ -44,4 +44,9 @@ public class PokemonService {
     public Pokemon addPokemon(Pokemon pokemon){
         return pokemonRepository.insert(pokemon);
     }
+
+
+    public List<Pokemon> findPokemonByName(String name){
+        return pokemonRepository.findPokemonByName(name);
+    }
 }
