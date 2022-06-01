@@ -57,7 +57,7 @@ public class PokemonService {
      * @param pokemon object to be updated
      * @return updated object
      */
-    public Pokemon update(Pokemon pokemon) {
+    public Pokemon updatePokemon(Pokemon pokemon) {
         // save method overwrites the resource
         return pokemonRepository.save(pokemon);
     }

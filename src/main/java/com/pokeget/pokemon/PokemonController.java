@@ -28,9 +28,8 @@ public class PokemonController {
     }
 
     @PutMapping("/")
-    public Pokemon update(@RequestBody Pokemon pokemon) {
-        return pokemonService.update(pokemon);
+    public Pokemon updatePokemon(@RequestBody Pokemon pokemon) {
+        return pokemonService.updatePokemon(pokemon);
     }
-
 }
 
