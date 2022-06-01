@@ -65,4 +65,12 @@ public class PokemonService {
     public void delete(String id) {
          pokemonRepository.deleteById(id);
     }
+
+    public List<Pokemon> getPokemonByID(int pokedexID) {
+        return pokemonRepository.findByPokeDexID(pokedexID);
+    }
+
+    public List<Pokemon> getPokemonByType(String type) {
+        return pokemonRepository.findByPokemonType(type);
+    }
 }

@@ -17,4 +17,10 @@ public interface PokemonRepository extends MongoRepository<Pokemon, String> {
      */
     @Query("{'name' :?0}")
     List<Pokemon> findPokemonByName(String name);
+
+    @Query("{'pokedexID' :?0 }")
+    List<Pokemon> findByPokeDexID(int pokedexID);
+
+    @Query(" '$or' : {'type1' : ?0} {'type2' : ?0}")
+    List<Pokemon> findByPokemonType(String type);
 }

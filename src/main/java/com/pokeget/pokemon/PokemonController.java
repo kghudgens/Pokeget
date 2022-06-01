@@ -17,14 +17,24 @@ public class PokemonController {
         return pokemonService.getAll();
     }
 
-    @PostMapping("/")
-    public Pokemon addPokemon(@RequestBody Pokemon pokemon){
-        return pokemonService.addPokemon(pokemon);
-    }
-
     @GetMapping("/{name}")
     public List<Pokemon> getPokemon(@PathVariable String name){
         return pokemonService.findPokemonByName(name);
+    }
+
+    @GetMapping("/{pokeid}")
+    public List<Pokemon> getPokemonByID(@PathVariable int pokeid){
+        return pokemonService.getPokemonByID(pokeid);
+    }
+
+    @GetMapping("/{type}")
+    public List<Pokemon> getPokemonByType(@PathVariable String type){
+        return pokemonService.getPokemonByType(type);
+    }
+
+    @PostMapping("/")
+    public Pokemon addPokemon(@RequestBody Pokemon pokemon){
+        return pokemonService.addPokemon(pokemon);
     }
 
     @PutMapping("/")
