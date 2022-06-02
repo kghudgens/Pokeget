@@ -78,4 +78,8 @@ public class PokemonService {
     public List<Pokemon> getPokemonByType(String type) {
         return pokemonRepository.findByPokemonType(type);
     }
+
+    public List<Pokemon> getPokemonByAbility(String ability) {
+        return pokemonRepository.findByAbility(ability);
+    }
 }

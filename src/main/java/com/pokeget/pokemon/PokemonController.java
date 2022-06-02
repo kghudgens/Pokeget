@@ -32,6 +32,11 @@ public class PokemonController {
         return pokemonService.getPokemonByType(type);
     }
 
+    @GetMapping("/{ability}")
+    public List<Pokemon> getPokemonByAbility(@PathVariable String ability){
+        return pokemonService.getPokemonByAbility(ability);
+    }
+
     @PostMapping("/")
     public Pokemon addPokemon(@RequestBody Pokemon pokemon){
         return pokemonService.addPokemon(pokemon);

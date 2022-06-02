@@ -35,4 +35,13 @@ public interface PokemonRepository extends MongoRepository<Pokemon, String> {
      */
     @Query(" '$or' : {'type1' : ?0} {'type2' : ?0}")
     List<Pokemon> findByPokemonType(String type);
+
+    /**
+     * Retrieves the pokemon object by its ability
+     *
+     * @param ability name of the ability the user wants to retrieve
+     * @return a list of the pokemon with the ability passed in
+     */
+    @Query("{'ability': ?0}")
+    List<Pokemon> findByAbility(String ability);
 }
