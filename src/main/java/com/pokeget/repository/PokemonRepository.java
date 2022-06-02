@@ -18,9 +18,21 @@ public interface PokemonRepository extends MongoRepository<Pokemon, String> {
     @Query("{'name' :?0}")
     List<Pokemon> findPokemonByName(String name);
 
+    /**
+     * Retrieves the pokemon object by its PokeDex id
+     *
+     * @param pokedexID the pokedex id of the pokemon to be deleted
+     * @return list of the pokemon with the pokedex id
+     */
     @Query("{'pokedexID' :?0 }")
     List<Pokemon> findByPokeDexID(int pokedexID);
 
+    /**
+     * Retrieves the pokemon object by one of the types listed
+     *
+     * @param type the type of the client is requesting
+     * @return list of the pokemon with the type
+     */
     @Query(" '$or' : {'type1' : ?0} {'type2' : ?0}")
     List<Pokemon> findByPokemonType(String type);
 }

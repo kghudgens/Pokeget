@@ -62,6 +62,11 @@ public class PokemonService {
         return pokemonRepository.save(pokemon);
     }
 
+    /**
+     * Deletes the pokemon object that matches the id
+     *
+     * @param id id of object to be deleted
+     */
     public void delete(String id) {
          pokemonRepository.deleteById(id);
     }
