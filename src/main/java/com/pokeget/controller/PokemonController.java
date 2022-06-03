@@ -1,6 +1,7 @@
-package com.pokeget.pokemon;
+package com.pokeget.controller;
 
-import com.pokeget.model.Pokemon;
+import com.pokeget.entity.Pokemon;
+import com.pokeget.service.PokemonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +24,7 @@ public class PokemonController {
     }
 
     @GetMapping("/{pokeid}")
-    public List<Pokemon> getPokemonByID(@PathVariable int pokeid){
+    public List<Pokemon> getPokemonByID(@PathVariable(value = "pokeid") int pokeid){
         return pokemonService.getPokemonByID(pokeid);
     }
 

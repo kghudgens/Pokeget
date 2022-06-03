@@ -1,10 +1,9 @@
-package com.pokeget.pokemon;
+package com.pokeget.service;
 
-import com.pokeget.model.Pokemon;
+import com.pokeget.entity.Pokemon;
 import com.pokeget.repository.PokemonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.yaml.snakeyaml.events.Event;
 
 import java.util.List;
 

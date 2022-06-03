@@ -1,6 +1,6 @@
 package com.pokeget.repository;
 
-import com.pokeget.model.Pokemon;
+import com.pokeget.entity.Pokemon;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
