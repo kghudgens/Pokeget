@@ -9,33 +9,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/pokemon")
-public class PokemonController {
+public class PokemonController{
     @Autowired
     PokemonService pokemonService;
 
     @GetMapping
     public List<Pokemon> getAll(){
         return pokemonService.getAll();
-    }
-
-    @GetMapping("/{name}")
-    public List<Pokemon> getPokemon(@PathVariable String name){
-        return pokemonService.findPokemonByName(name);
-    }
-
-    @GetMapping("/{pokeid}")
-    public List<Pokemon> getPokemonByID(@PathVariable(value = "pokeid") int pokeid){
-        return pokemonService.getPokemonByID(pokeid);
-    }
-
-    @GetMapping("/{type}")
-    public List<Pokemon> getPokemonByType(@PathVariable String type){
-        return pokemonService.getPokemonByType(type);
-    }
-
-    @GetMapping("/{ability}")
-    public List<Pokemon> getPokemonByAbility(@PathVariable String ability){
-        return pokemonService.getPokemonByAbility(ability);
     }
 
     @PostMapping("/")
