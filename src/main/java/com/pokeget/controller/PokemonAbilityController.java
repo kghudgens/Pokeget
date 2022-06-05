@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * Class represents the clients access to the pokemon object through the "ability" parameter
+ */
 @RestController
 @RequestMapping("/pokemon/ability")
 public class PokemonAbilityController {
@@ -17,7 +20,12 @@ public class PokemonAbilityController {
     @Autowired
     private PokemonService pokemonService;
 
-
+    /**
+     * Get Mapping that gives client access to pokemon object through ability parameter
+     *
+     * @param ability client side request
+     * @return list of pokemon with the requested ability
+     */
     @GetMapping("/{ability}")
     public List<Pokemon> getPokemonByAbility(@PathVariable String ability){
         return pokemonService.getPokemonByAbility(ability);
