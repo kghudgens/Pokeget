@@ -1,12 +1,11 @@
 package com.pokeget;
 
-import com.pokeget.model.Pokemon;
+import com.pokeget.entity.Pokemon;
 import com.pokeget.repository.PokemonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @SpringBootApplication
