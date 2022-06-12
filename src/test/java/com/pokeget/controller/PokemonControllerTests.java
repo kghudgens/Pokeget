@@ -22,7 +22,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = PokemonController.class, excludeAutoConfiguration = {SecurityAutoConfiguration.class})
-//@WithMockUser
 public class PokemonControllerTests {
 
     @Autowired
@@ -39,24 +38,20 @@ public class PokemonControllerTests {
     Pokemon mockPokemon2 = new Pokemon("21", "bulbasaur", "Grass", "", "Overgrow", 2, 15, 1);
     Pokemon mockPokemon3 = new Pokemon("22", "cyndaquil", "Fire", "", "Blaze", 1, 17, 155);
 
-    /**
-     * Test that checks that the getAll method belonging to the Pokemon Controller works as advertised.
-     *
-     * @throws Exception generic exception is thrown to catch all errors to display if test fails
-     */
+
     @Test
-    public void testGetAll() throws Exception {
+    public void testGetAllPokemon() throws Exception
+    {
         String url = "/pokemon/";
-        mockMvc.
+        mockMvc.perform(
                 // mock get request
-                perform(get(url)).
+                get(url))
                 // should return a 200 status
-                andExpect(status().isOk()).
+                .andExpect(status().isOk())
                 // the content accessed should be JSON objects
-                andExpect(content().contentType(MediaType.APPLICATION_JSON)).
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON)).
                 andDo(print());
     }
-
 
 
 }
