@@ -4,8 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pokeget.entity.Pokemon;
 import com.pokeget.repository.PokemonRepository;
 import com.pokeget.service.PokemonService;
+import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -15,8 +17,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import java.util.List;
+
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -37,19 +42,21 @@ public class PokemonControllerTests {
 
     // Data for the mock tests
     Pokemon mockPokemon = new Pokemon("20", "squirtle", "Water", "", "Torrent", 18, 20, 7);
-    Pokemon mockPokemon2 = new Pokemon("21", "bulbasaur", "Grass", "", "Overgrow", 2, 15, 1);
-    Pokemon mockPokemon3 = new Pokemon("22", "cyndaquil", "Fire", "", "Blaze", 1, 17, 155);
-
 
     @Test
     public void testGetAllPokemon() throws Exception
     {
+
+        when(pokemonService.getAll()).thenReturn(List.of(mockPokemon));
+
         String url = "/pokemon/";
-        mockMvc.perform(
+        mockMvc.perform(MockMvcRequestBuilders
                 // mock get request
-                get(url))
+                .get(url))
                 // should return a 200 status
-                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.size()", Matchers.is(1)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].name", Matchers.is("squirtle")))
                 // the content accessed should be JSON objects
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON)).
                 andDo(print());
