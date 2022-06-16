@@ -33,7 +33,7 @@ public interface PokemonRepository extends MongoRepository<Pokemon, String> {
      * @param type the type of the client is requesting
      * @return list of the pokemon with the type
      */
-    @Query(" '$or' : {'type1' : ?0} {'type2' : ?0}")
+    @Query(" {'$or' : [{'type1' : ?0}, {'type2' : ?0}]}")
     List<Pokemon> findByPokemonType(String type);
 
     /**
