@@ -67,10 +67,10 @@ public class PokemonControllerTests {
     {
         mockMvc.perform(MockMvcRequestBuilders
                 .post("/pokemon/")
-                .content(asJsonString(mockPokemon))
                 .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(mockPokemon))
                 .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
+                .andExpect(status().isCreated());
 
     }
 
