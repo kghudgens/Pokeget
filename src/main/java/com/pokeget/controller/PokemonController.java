@@ -3,6 +3,8 @@ package com.pokeget.controller;
 import com.pokeget.entity.Pokemon;
 import com.pokeget.service.PokemonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,11 +29,11 @@ public class PokemonController{
      * Method allows client side to create new pokemon resource
      *
      * @param pokemon object to be created
-     * @return the newly created resource
+     * @return http response for if the object is created or not
      */
     @PostMapping("/")
-    public Pokemon addPokemon(@RequestBody Pokemon pokemon){
-        return pokemonService.addPokemon(pokemon);
+    public ResponseEntity<Pokemon> addPokemon(@RequestBody Pokemon pokemon){
+        return new ResponseEntity<Pokemon>(pokemonService.addPokemon(pokemon), HttpStatus.CREATED);
     }
 
     /**
