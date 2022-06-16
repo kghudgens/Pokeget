@@ -7,7 +7,6 @@ import com.pokeget.service.PokemonService;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -20,6 +19,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.List;
 
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -38,8 +38,6 @@ public class PokemonAbilityControllerTests {
     @MockBean
     private PokemonRepository pokemonRepository;
 
-    @InjectMocks
-    private PokemonAbilityController pokemonAbilityController;
 
     // pokemon object to run the test with
     Pokemon mockPokemon1 = new Pokemon("20", "Squirtle", "Water", "", "Torrent", 18, 20, 7);
@@ -58,6 +56,7 @@ public class PokemonAbilityControllerTests {
                 .andDo(print())
                 .andExpect(status().isOk());
 
+        verify(pokemonService).getPokemonByAbility("Torrent");
     }
 
 }

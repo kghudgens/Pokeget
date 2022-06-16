@@ -20,6 +20,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.List;
 
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -60,6 +61,7 @@ public class PokemonPokedexIDControllerTests {
                         .andDo(print())
         ;
 
+        verify(pokemonService).getPokemonByID(3);
     }
 
 

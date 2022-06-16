@@ -21,7 +21,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.List;
 
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -60,6 +60,8 @@ public class PokemonControllerTests {
                 // the content accessed should be JSON objects
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON)).
                 andDo(print());
+
+        verify(pokemonService).getAll();
     }
 
     @Test
@@ -71,7 +73,6 @@ public class PokemonControllerTests {
                 .content(asJsonString(mockPokemon))
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated());
-
     }
 
     /**
