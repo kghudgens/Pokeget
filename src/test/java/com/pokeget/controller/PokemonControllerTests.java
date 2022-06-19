@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pokeget.entity.Pokemon;
 import com.pokeget.repository.PokemonRepository;
 import com.pokeget.service.PokemonService;
+import com.sun.net.httpserver.Authenticator;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,6 +22,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.List;
 
+import static org.mockito.BDDMockito.willDoNothing;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -43,16 +45,17 @@ public class PokemonControllerTests {
     // Data for the mock tests
     Pokemon mockPokemon = new Pokemon("20", "squirtle", "Water", "", "Torrent", 18, 20, 7);
 
+    String endPoint = "/pokemon/";
+
     @Test
     public void testGetAllPokemon() throws Exception
     {
 
         when(pokemonService.getAll()).thenReturn(List.of(mockPokemon));
 
-        String url = "/pokemon/";
         mockMvc.perform(MockMvcRequestBuilders
                 // mock get request
-                .get(url))
+                .get(endPoint))
                 // should return a 200 status
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.size()", Matchers.is(1)))
@@ -68,11 +71,22 @@ public class PokemonControllerTests {
     public void testAddPokemon() throws Exception
     {
         mockMvc.perform(MockMvcRequestBuilders
-                .post("/pokemon/")
+                .post(endPoint)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(mockPokemon))
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated());
+    }
+
+
+    @Test
+    public void testDeletePokemon() throws Exception
+    {
+        willDoNothing().given(pokemonService).deletePokemonByID("20");
+
+        String deleteEndPoint = "/pokemon/{id}";
+        mockMvc.perform(MockMvcRequestBuilders.delete(deleteEndPoint, "20"))
+                .andExpect(status().isOk());
     }
 
     /**
