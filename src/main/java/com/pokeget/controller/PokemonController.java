@@ -36,12 +36,6 @@ public class PokemonController{
         return new ResponseEntity<Pokemon>(pokemonService.addPokemon(pokemon), HttpStatus.CREATED);
     }
 
-    @GetMapping("/{id}")
-    public Pokemon getByID(@PathVariable String id)
-    {
-        return pokemonService.getByMongoID(id);
-    }
-
     /**
      * Method uses a put mapping to update the targeted resource or creates the resource if it
      * doesnt exist already
@@ -49,12 +43,10 @@ public class PokemonController{
      * @param pokemon object to be created or updated
      * @return object affected by the request
      */
-//    @PutMapping("/{id}")
-//    public Pokemon updatePokemon(@RequestBody Pokemon pokemon, @PathVariable String id)
-//    {
-////        return pokemonService.getPokemonByID()
-////    return pokemonService.updatePokemon(pokemon);
-//    }
+    @PutMapping("/")
+    public Pokemon updatePokemon(@RequestBody Pokemon pokemon) {
+        return pokemonService.updatePokemon(pokemon);
+    }
 
     /**
      * Method deletes the resource matching the id parameter
