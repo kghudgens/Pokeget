@@ -66,7 +66,7 @@ public class PokemonService {
      *
      * @param id id of object to be deleted
      */
-    public void delete(String id) {
+    public void deletePokemonByID(String id) {
          pokemonRepository.deleteById(id);
     }
 
