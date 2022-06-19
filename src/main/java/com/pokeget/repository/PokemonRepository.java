@@ -44,4 +44,13 @@ public interface PokemonRepository extends MongoRepository<Pokemon, String> {
      */
     @Query("{'ability': ?0}")
     List<Pokemon> findByAbility(String ability);
+
+    /**
+     * Retrieves the pokemon object by its id
+     *
+     * @param id String value that represents the id of the object
+     * @return all of the information of the pokemon queried
+     */
+    @Query("{'id': ?0}")
+    Pokemon getByMongoID(String id);
 }
