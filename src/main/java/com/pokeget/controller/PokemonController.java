@@ -25,6 +25,12 @@ public class PokemonController{
         return pokemonService.getAll();
     }
 
+    @GetMapping("/{id}")
+    public Pokemon getById(@PathVariable String id){
+        return pokemonService.getPokemonByMongoID(id);
+    }
+
+
     /**
      * Method allows client side to create new pokemon resource
      *
