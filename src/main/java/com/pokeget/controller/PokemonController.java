@@ -54,7 +54,7 @@ public class PokemonController{
      * @param id id of the resource to be deleted
      */
     @DeleteMapping("/{id}")
-    public void deletePokemon(@RequestParam("id") String id){
+    public void deletePokemon(@PathVariable("id") String id){
         pokemonService.deletePokemonByID(id);
     }
 
