@@ -1,15 +1,17 @@
 package com.pokeget;
 
-import com.pokeget.entity.Pokemon;
-import com.pokeget.repository.PokemonRepository;
+import com.pokeget.Pokemon.Pokemon;
+import com.pokeget.Pokemon.PokemonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @SpringBootApplication
 @EnableMongoRepositories
+@ComponentScan({"com.pokeget.pokemon"})
 public class PokegetApplication implements CommandLineRunner {
 
 	// autowired the repository so spring boot can find it automatically
