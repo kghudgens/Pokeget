@@ -41,7 +41,50 @@ public class PokemonController{
 
     }
 
+    /**
+     * Get Mapping that gives client access to pokemon object through name parameter
+     *
+     * @param name client side request
+     * @return list of pokemon with the requested pokedexID
+     */
+    @GetMapping(value = "/name/{name}")
+    public List<Pokemon> getPokemon(@PathVariable("name") String name){
+        return pokemonService.findPokemonByName(name);
+    }
 
+    /**
+     * Get Mapping that gives client access to pokemon object through Pokedex ID parameter
+     *
+     * @param pokedexID client side request
+     * @return list of pokemon with the requested pokedexID
+     */
+    @GetMapping(value = "/pokedexID/{pokedexID}")
+    public List<Pokemon> getPokemonByID(@PathVariable int pokedexID){
+        return pokemonService.getPokemonByID(pokedexID);
+    }
+
+    /**
+     * Get Mapping that gives client access to pokemon object through type parameter
+     *
+     * @param type client side request
+     * @return list of pokemon with the requested type
+     */
+    @GetMapping("/type/{type}")
+    public List<Pokemon> getPokemonByType(@PathVariable String type){
+        return pokemonService.getPokemonByType(type);
+    }
+
+
+    /**
+     * Get Mapping that gives client access to pokemon object through ability parameter
+     *
+     * @param ability client side request
+     * @return list of pokemon with the requested ability
+     */
+    @GetMapping("/ability/{ability}")
+    public List<Pokemon> getPokemonByAbility(@PathVariable String ability){
+        return pokemonService.getPokemonByAbility(ability);
+    }
     /**
      * Method allows client side to create new pokemon resource
      *
