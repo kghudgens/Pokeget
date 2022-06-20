@@ -1,7 +1,7 @@
-package com.pokeget.service;
+package com.pokeget.Pokemon;
 
-import com.pokeget.entity.Pokemon;
-import com.pokeget.repository.PokemonRepository;
+import com.pokeget.Pokemon.Pokemon;
+import com.pokeget.Pokemon.PokemonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

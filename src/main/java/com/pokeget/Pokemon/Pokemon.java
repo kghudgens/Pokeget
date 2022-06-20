@@ -1,4 +1,4 @@
-package com.pokeget.entity;
+package com.pokeget.Pokemon;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
