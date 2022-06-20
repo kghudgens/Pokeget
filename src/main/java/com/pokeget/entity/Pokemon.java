@@ -2,7 +2,9 @@ package com.pokeget.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.stereotype.Component;
 
+@Component
 @Document("pokemon")
 public class Pokemon {
 
@@ -27,6 +29,10 @@ public class Pokemon {
         this.height = height;
         this.weight = weight;
         this.pokedexID = pokedexID;
+    }
+
+    public Pokemon(){
+
     }
 
     public String getId() {
