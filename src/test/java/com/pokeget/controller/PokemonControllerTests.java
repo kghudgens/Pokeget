@@ -1,14 +1,13 @@
 package com.pokeget.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pokeget.entity.Pokemon;
-import com.pokeget.repository.PokemonRepository;
-import com.pokeget.service.PokemonService;
-import com.sun.net.httpserver.Authenticator;
+import com.pokeget.Pokemon.Pokemon;
+import com.pokeget.Pokemon.PokemonController;
+import com.pokeget.Pokemon.PokemonRepository;
+import com.pokeget.Pokemon.PokemonService;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
