@@ -17,6 +17,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
@@ -68,6 +69,82 @@ public class PokemonControllerTests {
     }
 
     @Test
+    public void getPokemonByAbility() throws Exception {
+
+        when(pokemonService.getPokemonByAbility("Torrent")).thenReturn(List.of(mockPokemon));
+
+        String url = "/pokemon/ability/Torrent";
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get(url)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.size()", Matchers.is(1)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].ability").value("Torrent"))
+                .andDo(print())
+                .andExpect(status().isOk());
+
+        verify(pokemonService).getPokemonByAbility("Torrent");
+    }
+
+    @Test
+    public void getPokemonByName() throws Exception
+    {
+//        when the pkservice method is called return the pokemon object to compare against
+        when(pokemonService.findPokemonByName("squirtle")).thenReturn(List.of(mockPokemon));
+
+
+        String url  = "/pokemon/name/{name}";
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get(url, "squirtle")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].name", Matchers.is("squirtle")))
+                .andDo(print())
+                .andExpect(status().isOk());
+
+        // ensure that correct method is being called
+        verify(pokemonService).findPokemonByName("squirtle");
+    }
+
+    @Test
+    public void testGetByPokeDexID() throws Exception
+    {
+        // data structure acts as repository
+        when(pokemonService.getPokemonByID(7)).thenReturn(List.of(mockPokemon));
+
+        String url = "/pokemon/pokedexID/{pokedexID}";
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get(url, 7)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.size()", Matchers.is(1)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].pokedexID", Matchers.is(7)))
+                .andExpect(status().isOk())
+                .andDo(print())
+        ;
+
+        verify(pokemonService).getPokemonByID(7);
+    }
+
+    @Test
+    public void getByTypeTest() throws Exception
+    {
+        String type = "Water";
+
+        when(pokemonService.getPokemonByType(type)).thenReturn(List.of(mockPokemon));
+
+        String url = "/pokemon/type/{type}";
+
+        MvcResult result  = mockMvc.perform(MockMvcRequestBuilders
+                        .get(url, type)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].type1", Matchers.is(type)))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        verify(pokemonService).getPokemonByType("Water");
+
+    }
+
+
+    @Test
     public void testAddPokemon() throws Exception
     {
         mockMvc.perform(MockMvcRequestBuilders
@@ -77,7 +154,6 @@ public class PokemonControllerTests {
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated());
     }
-
 
     @Test
     public void testDeletePokemon() throws Exception
