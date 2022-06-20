@@ -22,11 +22,22 @@ public class PokemonController{
     @Autowired
     private PokemonService pokemonService;
 
+    /**
+     * Method returns all pokemon objects stored in the Mongo DB instance
+     *
+     * @return a list of all pokemon objects
+     */
     @GetMapping
     public List<Pokemon> getAll(){
         return pokemonService.getAll();
     }
 
+    /**
+     * Method takes in a String id to return the pokemon object with the corresponding object
+     *
+     * @param id String that represents the entry number on the object
+     * @return the pokemon object that matches the id parameter or and Not Found status
+     */
     @GetMapping("/{id}")
     public Pokemon getById(@PathVariable String id){
         try{
