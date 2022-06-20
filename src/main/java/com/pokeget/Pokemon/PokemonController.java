@@ -38,7 +38,7 @@ public class PokemonController{
      * @param id String that represents the entry number on the object
      * @return the pokemon object that matches the id parameter or and Not Found status
      */
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public Pokemon getById(@PathVariable String id){
         try{
             return pokemonService.getPokemonByMongoID(id);
