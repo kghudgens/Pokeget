@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -15,6 +16,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/pokemon")
 public class PokemonController{
+
+    @Autowired
+    private Pokemon pokemon;
 
     // access to the service layer
     @Autowired
@@ -27,7 +31,14 @@ public class PokemonController{
 
     @GetMapping("/{id}")
     public Pokemon getById(@PathVariable String id){
-        return pokemonService.getPokemonByMongoID(id);
+        try{
+            return pokemonService.getPokemonByMongoID(id);
+        } catch(Exception exc){
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Pokemon Not Found", exc
+            );
+        }
+
     }
 
 
@@ -49,10 +60,17 @@ public class PokemonController{
      * @param pokemon object to be created or updated
      * @return object affected by the request
      */
-    @PutMapping("/")
-    public Pokemon updatePokemon(@RequestBody Pokemon pokemon) {
-        return pokemonService.updatePokemon(pokemon);
-    }
+//    @PutMapping("/{id}")
+//    public Pokemon updatePokemon(@RequestBody Pokemon newPokemon, @PathVariable String id)
+//    {
+//        Pokemon calledToBeUpdated = pokemonService.getPokemonByMongoID(id);
+//
+//     return pokemonService.getPokemonByMongoID(id)
+//             .map(pokemon ->{
+//
+//                     }
+//     );
+//    }
 
     /**
      * Method deletes the resource matching the id parameter
