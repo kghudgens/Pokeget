@@ -1,11 +1,14 @@
 package com.pokeget.Pokemon;
 
+import com.pokeget.exception.PokemonNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.*;
+import java.util.function.*;
 import java.util.List;
 
 /**
@@ -40,14 +43,11 @@ public class PokemonController{
      */
     @GetMapping("/id/{id}")
     public Pokemon getById(@PathVariable String id){
-        try{
-            return pokemonService.getPokemonByMongoID(id);
-        } catch(Exception exc){
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "Pokemon Not Found", exc
-            );
+        if (pokemonService.getPokemonByMongoID(id) == null){
+            //! currently returning 500, correct it to return 404
+            throw new PokemonNotFoundException("Pokemon Not Found");
         }
-
+            return pokemonService.getPokemonByMongoID(id);
     }
 
     /**
