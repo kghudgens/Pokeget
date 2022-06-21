@@ -85,7 +85,7 @@ public class PokemonControllerTests {
     }
 
     @Test
-    public void getPokemonByName() throws Exception
+    public void testGetPokemonByName() throws Exception
     {
 //        when the pkservice method is called return the pokemon object to compare against
         when(pokemonService.findPokemonByName("squirtle")).thenReturn(List.of(mockPokemon));
@@ -123,7 +123,7 @@ public class PokemonControllerTests {
     }
 
     @Test
-    public void getByTypeTest() throws Exception
+    public void testGetByType() throws Exception
     {
         String type = "Water";
 
