@@ -109,20 +109,28 @@ public class PokemonController{
      * Method uses a put mapping to update the targeted resource or creates the resource if it
      * doesnt exist already
      *
-     * @param pokemon object to be created or updated
+     * @param newPokemon object to be created or updated
      * @return object affected by the request
      */
-//    @PutMapping("/{id}")
-//    public Pokemon updatePokemon(@RequestBody Pokemon newPokemon, @PathVariable String id)
-//    {
-//        Pokemon calledToBeUpdated = pokemonService.getPokemonByMongoID(id);
-//
-//     return pokemonService.getPokemonByMongoID(id)
-//             .map(pokemon ->{
-//
-//                     }
-//     );
-//    }
+    @PutMapping("/{id}")
+    public Pokemon updatePokemon(@RequestBody Pokemon newPokemon, @PathVariable String id)
+    {
+        Pokemon calledToBeUpdated = pokemonService.getPokemonByMongoID(id);
+
+        if(calledToBeUpdated == null){
+            return pokemonService.addPokemon(newPokemon);
+        } else {
+            calledToBeUpdated.setId(id);
+            calledToBeUpdated.setName(newPokemon.getName());
+            calledToBeUpdated.setAbility(newPokemon.getAbility());
+            calledToBeUpdated.setType1(newPokemon.getType1());
+            calledToBeUpdated.setType2(newPokemon.getType2());
+            calledToBeUpdated.setHeight(newPokemon.getHeight());
+            calledToBeUpdated.setWeight(newPokemon.getWeight());
+            calledToBeUpdated.setPokedexID(newPokemon.getPokedexID());
+        }
+        return pokemonService.addPokemon(calledToBeUpdated);
+    }
 
     /**
      * Method deletes the resource matching the id parameter
