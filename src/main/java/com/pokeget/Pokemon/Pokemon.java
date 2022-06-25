@@ -4,19 +4,42 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Component;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
+
 @Component
 @Document("pokemon")
 public class Pokemon {
 
     @Id
+    @NotNull
+    @Size(min = 1)
     private String id;
 
+    @NotNull(message = "Pokemon name is required")
+    @Size(min=3, max = 10, message = "Pokemon name cannot be longer than 10 characters")
     private String name;
+
+    @NotNull(message = "Pokemon type is required")
+    @Size(min = 1)
     private String type1;
+
+    @Size(min = 1)
     private String type2;
+
+    @NotNull(message = "Pokemon ability is required")
+    @Size(min = 1)
     private String ability;
+
+    @PositiveOrZero
     private int height;
+
+    @PositiveOrZero
     private int weight;
+
+    @NotNull(message = "Pokemon pokedexId is required")
+    @PositiveOrZero
     private int pokedexID;
 
 
