@@ -22,6 +22,7 @@ public class PokemonController{
     @Autowired
     private PokemonService pokemonService;
 
+
     /**
      * Method returns all pokemon objects stored in the Mongo DB instance
      *
@@ -31,6 +32,7 @@ public class PokemonController{
     public List<Pokemon> getAll(){
         return pokemonService.getAll();
     }
+
 
     /**
      * Method takes in a String id to return the pokemon object with the corresponding object
@@ -47,6 +49,7 @@ public class PokemonController{
             return pokemonService.getPokemonByMongoID(id);
     }
 
+
     /**
      * Get Mapping that gives client access to pokemon object through name parameter
      *
@@ -55,8 +58,12 @@ public class PokemonController{
      */
     @GetMapping(value = "/name/{name}")
     public List<Pokemon> getPokemon(@PathVariable("name") String name){
+        if(pokemonService.findPokemonByName(name) == null){
+            throw new PokemonNotFoundException("Pokemon Not Found");
+        }
         return pokemonService.findPokemonByName(name);
     }
+
 
     /**
      * Get Mapping that gives client access to pokemon object through Pokedex ID parameter
@@ -66,8 +73,12 @@ public class PokemonController{
      */
     @GetMapping(value = "/pokedexID/{pokedexID}")
     public List<Pokemon> getPokemonByID(@PathVariable int pokedexID){
+        if (pokemonService.getPokemonByID(pokedexID) == null){
+            throw new PokemonNotFoundException("Pokemon Not Found");
+        }
         return pokemonService.getPokemonByID(pokedexID);
     }
+
 
     /**
      * Get Mapping that gives client access to pokemon object through type parameter
@@ -77,6 +88,9 @@ public class PokemonController{
      */
     @GetMapping("/type/{type}")
     public List<Pokemon> getPokemonByType(@PathVariable String type){
+        if (pokemonService.getPokemonByType(type)==null){
+            throw new PokemonNotFoundException("Pokemon not found");
+        }
         return pokemonService.getPokemonByType(type);
     }
 
@@ -89,8 +103,13 @@ public class PokemonController{
      */
     @GetMapping("/ability/{ability}")
     public List<Pokemon> getPokemonByAbility(@PathVariable String ability){
+        if(pokemonService.getPokemonByAbility(ability)==null){
+            throw new PokemonNotFoundException("Pokemon not found");
+        }
         return pokemonService.getPokemonByAbility(ability);
     }
+
+
     /**
      * Method allows client side to create new pokemon resource
      *
@@ -101,6 +120,7 @@ public class PokemonController{
     public ResponseEntity<Pokemon> addPokemon(@RequestBody Pokemon pokemon){
         return new ResponseEntity<Pokemon>(pokemonService.addPokemon(pokemon), HttpStatus.CREATED);
     }
+
 
     /**
      * Method uses a put mapping to update the targeted resource or creates the resource if it
@@ -128,6 +148,7 @@ public class PokemonController{
         }
         return pokemonService.addPokemon(calledToBeUpdated);
     }
+
 
     /**
      * Method deletes the resource matching the id parameter
