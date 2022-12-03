@@ -12,7 +12,7 @@ public interface PokemonService {
 
     PokemonEntity addPokemon(PokemonEntity pokemonEntity);
 
-    PokemonEntity findPokemonByName(String name);
+    PokemonEntity getPokemonByName(String name);
 
     PokemonEntity updatePokemon(PokemonEntity pokemonEntity);
 
@@ -24,5 +24,4 @@ public interface PokemonService {
 
     List<PokemonEntity> getPokemonByAbility(String ability);
 
-    PokemonEntity getPokemonByMongoID(String id);
 }
