@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 
 @Component
 @Document("pokemon")
-public class Pokemon {
+public class PokemonEntity {
 
     @Id
     @NotNull
@@ -43,7 +43,7 @@ public class Pokemon {
     private int pokedexID;
 
 
-    public Pokemon(String id, String name, String type1, String type2, String ability, int height, int weight, int pokedexID) {
+    public PokemonEntity(String id, String name, String type1, String type2, String ability, int height, int weight, int pokedexID) {
         this.id = id;
         this.name = name;
         this.type1 = type1;
@@ -54,7 +54,7 @@ public class Pokemon {
         this.pokedexID = pokedexID;
     }
 
-    public Pokemon(){
+    public PokemonEntity(){
 
     }
 

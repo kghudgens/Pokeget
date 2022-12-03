@@ -1,6 +1,6 @@
 package com.pokeget.service;
 
-import com.pokeget.Pokemon.Pokemon;
+import com.pokeget.Pokemon.PokemonEntity;
 import com.pokeget.Pokemon.PokemonRepository;
 
 import javax.inject.Inject;
@@ -11,30 +11,34 @@ public class PokemonServiceImpl implements PokemonService {
     @Inject
     private final PokemonRepository pokemonRepository;
 
-    public PokemonServiceImpl(PokemonRepository pokemonRepository) {
+    @Inject
+    private final PokemonEntity pokemonEntity;
+
+    public PokemonServiceImpl(PokemonRepository pokemonRepository, PokemonEntity pokemonEntity) {
         this.pokemonRepository = pokemonRepository;
+        this.pokemonEntity = pokemonEntity;
     }
 
     @Override
-    public List<Pokemon> getAll() {
+    public List<PokemonEntity> getAll() {
         return pokemonRepository.findAll();
     }
 
     @Override
-    public Pokemon addPokemon(Pokemon pokemon) {
+    public PokemonEntity addPokemon(PokemonEntity pokemonEntity) {
         // insert create new resource
-        return pokemonRepository.insert(pokemon);
+        return pokemonRepository.insert(pokemonEntity);
     }
 
     @Override
-    public List<Pokemon> findPokemonByName(String name) {
+    public PokemonEntity findPokemonByName(String name) {
         return pokemonRepository.findPokemonByName(name);
     }
 
     @Override
-    public Pokemon updatePokemon(Pokemon pokemon) {
+    public PokemonEntity updatePokemon(PokemonEntity pokemonEntity) {
         // save method overwrites the resource
-        return pokemonRepository.save(pokemon);
+        return pokemonRepository.save(pokemonEntity);
     }
 
     @Override
@@ -43,22 +47,22 @@ public class PokemonServiceImpl implements PokemonService {
     }
 
     @Override
-    public List<Pokemon> getPokemonByID(int pokedexID) {
+    public PokemonEntity getPokemonByID(int pokedexID) {
         return pokemonRepository.findByPokeDexID(pokedexID);
     }
 
     @Override
-    public List<Pokemon> getPokemonByType(String type) {
+    public List<PokemonEntity> getPokemonByType(String type) {
         return pokemonRepository.findByPokemonType(type);
     }
 
     @Override
-    public List<Pokemon> getPokemonByAbility(String ability) {
+    public List<PokemonEntity> getPokemonByAbility(String ability) {
         return pokemonRepository.findByAbility(ability);
     }
 
     @Override
-    public Pokemon getPokemonByMongoID(String id) {
+    public PokemonEntity getPokemonByMongoID(String id) {
         return pokemonRepository.findByPokemonID(id);
 
     }

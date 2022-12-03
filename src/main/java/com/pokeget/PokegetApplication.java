@@ -1,6 +1,6 @@
 package com.pokeget;
 
-import com.pokeget.Pokemon.Pokemon;
+import com.pokeget.Pokemon.PokemonEntity;
 import com.pokeget.Pokemon.PokemonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -28,25 +28,25 @@ public class PokegetApplication implements CommandLineRunner {
 		// Data for commandlinerunner to insert into the mongorepository
 //	List<Pokemon> listOfPokemon = new ArrayList<>();
 
-	Pokemon p1  = new Pokemon("1", "Blastoise", "Water", "", "Torrent",  63,
+	PokemonEntity p1  = new PokemonEntity("1", "Blastoise", "Water", "", "Torrent",  63,
 			188, 9);
-	Pokemon p2  = new Pokemon("2", "Charizard", "Fire", "Flying", "Blaze",  67,
+	PokemonEntity p2  = new PokemonEntity("2", "Charizard", "Fire", "Flying", "Blaze",  67,
 				200, 6);
-	Pokemon p3  = new Pokemon("3", "Blaziken", "Fire", "Fighting", "Speed Boost",  75,
+	PokemonEntity p3  = new PokemonEntity("3", "Blaziken", "Fire", "Fighting", "Speed Boost",  75,
 				115, 257);
-	Pokemon p4  = new Pokemon("4", "Sceptile", "Grass", "", "Overgrow",  63,
+	PokemonEntity p4  = new PokemonEntity("4", "Sceptile", "Grass", "", "Overgrow",  63,
 				115, 254);
-	Pokemon p5  = new Pokemon("5", "Swampert", "Water", "Ground", "Torrent",  59,
+	PokemonEntity p5  = new PokemonEntity("5", "Swampert", "Water", "Ground", "Torrent",  59,
 				180, 260);
-	Pokemon p6  = new Pokemon("6", "Empoleon", "Water", "Steel", "Defiant",  67,
+	PokemonEntity p6  = new PokemonEntity("6", "Empoleon", "Water", "Steel", "Defiant",  67,
 				186, 395);
-	Pokemon p7  = new Pokemon("7", "Serperior", "Grass", "", "Contrary",  130,
+	PokemonEntity p7  = new PokemonEntity("7", "Serperior", "Grass", "", "Contrary",  130,
 				138, 497);
-	Pokemon p8  = new Pokemon("8", "Gengar", "Ghost", "Posion", "Cursed Body",  59,
+	PokemonEntity p8  = new PokemonEntity("8", "Gengar", "Ghost", "Posion", "Cursed Body",  59,
 				89, 94);
-	Pokemon p9  = new Pokemon("9", "Alakazam", "Psychic", "", "Inner Focus",  59,
+	PokemonEntity p9  = new PokemonEntity("9", "Alakazam", "Psychic", "", "Inner Focus",  59,
 				106, 65);
-	Pokemon p10  = new Pokemon("10", "Tyranitar", "Dark", "Rock", "Sand Stream",  79,445
+	PokemonEntity p10  = new PokemonEntity("10", "Tyranitar", "Dark", "Rock", "Sand Stream",  79,445
 				, 248);
 
 	pokemonRepository.save(p1);

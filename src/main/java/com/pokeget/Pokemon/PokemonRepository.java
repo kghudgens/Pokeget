@@ -1,13 +1,12 @@
 package com.pokeget.Pokemon;
 
-import com.pokeget.Pokemon.Pokemon;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 @Repository
-public interface PokemonRepository extends MongoRepository<Pokemon, String> {
+public interface PokemonRepository extends MongoRepository<PokemonEntity, String> {
 
     /**
      * Retrieves the pokemon object by name
@@ -16,7 +15,7 @@ public interface PokemonRepository extends MongoRepository<Pokemon, String> {
      * @return list of the pokemon
      */
     @Query("{'name' :?0}")
-    List<Pokemon> findPokemonByName(String name);
+    List<PokemonEntity> findPokemonByName(String name);
 
     /**
      * Retrieves the pokemon object by its PokeDex id
@@ -25,7 +24,7 @@ public interface PokemonRepository extends MongoRepository<Pokemon, String> {
      * @return list of the pokemon with the pokedex id
      */
     @Query("{'pokedexID' :?0 }")
-    List<Pokemon> findByPokeDexID(int pokedexID);
+    List<PokemonEntity> findByPokeDexID(int pokedexID);
 
     /**
      * Retrieves the pokemon object by one of the types listed
@@ -34,7 +33,7 @@ public interface PokemonRepository extends MongoRepository<Pokemon, String> {
      * @return list of the pokemon with the type
      */
     @Query(" {'$or' : [{'type1' : ?0}, {'type2' : ?0}]}")
-    List<Pokemon> findByPokemonType(String type);
+    List<PokemonEntity> findByPokemonType(String type);
 
     /**
      * Retrieves the pokemon object by its ability
@@ -43,7 +42,7 @@ public interface PokemonRepository extends MongoRepository<Pokemon, String> {
      * @return a list of the pokemon with the ability passed in
      */
     @Query("{'ability': ?0}")
-    List<Pokemon> findByAbility(String ability);
+    List<PokemonEntity> findByAbility(String ability);
 
     /**
      * Method retrieves the corresponding pokemon object depending on the id parameter
@@ -52,5 +51,5 @@ public interface PokemonRepository extends MongoRepository<Pokemon, String> {
      * @return the pokemon object with the matching id
      */
     @Query("{'id': ?0}")
-    Pokemon findByPokemonID(String id);
+    PokemonEntity findByPokemonID(String id);
 }
