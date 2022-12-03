@@ -22,4 +22,8 @@ public interface PokemonRepository extends MongoRepository<PokemonEntity, String
 
     @Query("{'id': ?0}")
     PokemonEntity findByPokemonID(String id);
+
+    @Query(value = "{'name' : ?0}", delete = true)
+    PokemonEntity deleteByName(String name);
+
 }

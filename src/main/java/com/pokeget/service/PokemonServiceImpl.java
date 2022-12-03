@@ -31,13 +31,12 @@ public class PokemonServiceImpl implements PokemonService {
     }
 
     @Override
-    public PokemonEntity findPokemonByName(String name) {
+    public PokemonEntity getPokemonByName(String name) {
         return pokemonRepository.findPokemonByName(name);
     }
 
     @Override
     public PokemonEntity updatePokemon(PokemonEntity pokemonEntity) {
-        // save method overwrites the resource
         return pokemonRepository.save(pokemonEntity);
     }
 
@@ -61,9 +60,4 @@ public class PokemonServiceImpl implements PokemonService {
         return pokemonRepository.findByAbility(ability);
     }
 
-    @Override
-    public PokemonEntity getPokemonByMongoID(String id) {
-        return pokemonRepository.findByPokemonID(id);
-
-    }
 }
