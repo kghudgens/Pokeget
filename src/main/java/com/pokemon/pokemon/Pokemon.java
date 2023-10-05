@@ -1,12 +1,5 @@
 package com.pokemon.pokemon;
 
-import org.springframework.data.annotation.Id;
-
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import java.io.Serializable;
-import java.util.ArrayList;
-
 /*
  *The Pokemon class represents the data that will be taken for each pokemon query.
  *
@@ -14,10 +7,8 @@ import java.util.ArrayList;
  * @version 1.0
  */
 
-
-public class Pokemon{
+public class Pokemon {
     // attributes defining the pokedmon
-    @Id
     private long id;
     private Integer pokedexEntry;
     private String name;
@@ -25,21 +16,25 @@ public class Pokemon{
     private Integer weight;
     private int[] types = new int[2];
 
-    public Pokemon(){
+    public Pokemon() {
 
     }
 
-
     /*
-    * The Pokemon constructor instantiates its class with all fields execept the id field because the
-    * field is not assigned until.
-    *
-    * @param pokedexEntry Integer of the pokemon's pokedex entry number
-    * @param name String of the pokemons name
-    * @param height Integer of the pokemons height
-    * @param weight Integer of the pokemons weight
-    * @ArrayList types an ArrayList
-    */
+     * The Pokemon constructor instantiates its class with all fields execept the id
+     * field because the
+     * field is not assigned until.
+     *
+     * @param pokedexEntry Integer of the pokemon's pokedex entry number
+     * 
+     * @param name String of the pokemons name
+     * 
+     * @param height Integer of the pokemons height
+     * 
+     * @param weight Integer of the pokemons weight
+     * 
+     * @ArrayList types an ArrayList
+     */
     public Pokemon(Integer pokedexEntry, String name, Integer height, Integer weight, int[] types) {
         this.pokedexEntry = pokedexEntry;
         this.name = name;
@@ -52,10 +47,15 @@ public class Pokemon{
      * The Pokemon constructor instantiates its class with all fields.
      *
      * @param id long of the pokemons id number in the MongoDB instance
+     * 
      * @param pokedexEntry Integer of the pokemon's pokedex entry number
+     * 
      * @param name String of the pokemons name
+     * 
      * @param height Integer of the pokemons height
+     * 
      * @param weight Integer of the pokemons weight
+     * 
      * @ArrayList types an ArrayList
      */
     public Pokemon(long id, Integer pokedexEntry, String name, Integer height, Integer weight, int[] types) {
